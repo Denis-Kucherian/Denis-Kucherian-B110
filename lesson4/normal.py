@@ -31,7 +31,18 @@ print(sort_to_max([2, 10, -12, 2.5, 20, -11, 4, 4, 0]))
 # Напишите собственную реализацию стандартной функции filter.
 # Разумеется, внутри нельзя использовать саму функцию filter.
 
+def filter_numb(func, input_list):
+    output_list = []
+    for i in range(len(input_list)):
+        if func(input_list[i]) == True:
+            output_list.append(input_list[i])   # если элемент нечётный - добавляем в возвращаемый список
+    return output_list
+
+input_list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+func = lambda n: n % 2 != 0                     # проверка на нечётность
+print(filter_numb(func, input_list))
 
 # Задача-4:
 # Даны четыре точки А1(х1, у1), А2(x2 ,у2), А3(x3 , у3), А4(х4, у4).
 # Определить, будут ли они вершинами параллелограмма.
+
