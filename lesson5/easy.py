@@ -12,9 +12,7 @@ def random_int():
     n = int(input("Введите количество целых чисел в списке: ")) # задаём количество элементов в списке
     d1 = int(input("Введите начало диапазона списка: "))        # список будет состоять из чисел от d1 ...
     d2 = int(input("Введите конец диапазона списка: "))         # ... до d2
-    random_list = [] # наш пока пустой список
-    for i in range (n):
-        random_list.append(int(random.randint(d1, d2)))         # заполняем список
+    random_list = [random.randint(d1, d2) for i in range(n)]    # заполняем список
     return random_list
 
 source_list = random_int()                                      # получаем исходный список
