@@ -18,13 +18,40 @@ try:
 except ValueError as error:
     print("Ошибка:", error, ". Проверьте введенные числа.")
 
-# ПРИМЕЧАНИЕ: Для решения задач 2-4 необходимо познакомиться с модулями os, sys!
-# СМ.: https://pythonworld.ru/moduli/modul-os.html, https://pythonworld.ru/moduli/modul-sys.html
 
 # Задача-2:
 # Напишите скрипт, создающий директории dir_1 - dir_9 в папке,
 # из которой запущен данный скрипт.
 # И второй скрипт, удаляющий эти папки.
+
+import os
+
+
+def create_dir():
+    for i in range(1, 10):
+        dir_name = ("dir_" + str(i))
+        try:
+            os.mkdir(dir_name)
+        except:
+            print(f"Папка {dir_name} существует")
+
+
+def delete_dir():
+    for i in range(1, 10):
+        dir_name = ("dir_" + str(i))
+        try:
+            os.rmdir(dir_name)
+        except:
+            print(f"Папка {dir_name} не существует")
+
+
+inp = input("Введите 1 для создания папок, 2 - для удаления: ")
+if inp == "1":
+    create_dir()
+elif inp == "2":
+    delete_dir()
+else:
+    print("Неправильный ввод")
 
 # Задача-3:
 # Напишите скрипт, отображающий папки текущей директории.
