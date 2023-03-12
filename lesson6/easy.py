@@ -69,3 +69,8 @@ if __name__ == '__main__':
 
 # Задача-4:
 # Напишите скрипт, создающий копию файла, из которого запущен данный скрипт.
+
+import shutil
+
+new_file ="copy___" + os.path.split(__file__)[1]
+shutil.copy(__file__, new_file)

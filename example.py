@@ -1,13 +1,21 @@
-import os
+import os, shutil
+import sys
+
+#
+# Задача-4:
+# Напишите скрипт, создающий копию файла, из которого запущен данный скрипт.
 
 
-def dir_view():
-    d = os.listdir()
-    print('Список папок:')
-    for index, element in enumerate(d, start=1):
-        if os.path.isdir(element):
-            print(f'{index}. {element}')
+# def create_main_copy():
+#     src_path = os.path.join(os.getcwd(), os.path.split(__file__)[1])
+#     print(src_path)
+#     des_path = os.path.join(os.getcwd(), "copy_" + os.path.split(__file__)[1])
+#     print(des_path)
+#     shutil.copy(src_path, des_path)
+#
+#
+# if __name__ == '__main__':
+#     create_main_copy()
 
-
-if __name__ == '__main__':
-    dir_view()
+new_file ="copy___" + os.path.split(__file__)[1]
+shutil.copy(__file__, new_file)
