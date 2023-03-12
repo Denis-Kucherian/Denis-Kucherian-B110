@@ -1,23 +1,13 @@
-# Задача-1:
-# Следующая программа написана верно, однако содержит места потенциальных ошибок.
-# используя конструкцию try добавьте в код обработку соответствующих исключений.
-# Пример.
-# Исходная программа:
-
-def avg(a, b):
-    """Вернуть среднее геометрическое чисел 'a' и 'b'.
-
-    Параметры:
-        - a, b (int или float).
-
-    Результат:
-        - float.
-    """
-    return (a * b) ** 0.5 * 2   # ещё на количество чисел надо умножить
+import os
 
 
-a = float(input("a = "))
-b = float(input("b = "))
-c = avg(a, b)
-print("Среднее геометрическое = {:.2f}".format(c))
+def dir_view():
+    d = os.listdir()
+    print('Список папок:')
+    for index, element in enumerate(d, start=1):
+        if os.path.isdir(element):
+            print(f'{index}. {element}')
 
+
+if __name__ == '__main__':
+    dir_view()
