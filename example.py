@@ -2,9 +2,6 @@ class Person:                       # класс "Человек"
     def __init__(self, name):
         self.name = name
 
-    def __str__(self):
-        return self.name
-
     def __repr__(self):
         return self.name
 
@@ -25,20 +22,21 @@ class Teacher(Person):              # класс "Учитель"
 
 class Student(Person):              # класс "Ученик"
     def __init__(self, name, my_class, mother, father):
-        super().__init__(name)
+        # super().__init__(name)
+        self.name = name
         self.my_class = my_class
         self.mother = mother
         self.father = father
 
         my_class.add_student(self)
 
+    def __repr__(self):
+        return self.name
+
 
 class Subject:                     # класс "Предмет"
     def __init__(self, title):
         self.title = title
-
-    def __str__(self):
-        return self.title
 
     def __repr__(self):
         return self.title
@@ -56,9 +54,6 @@ class Class:                        # класс "Класс"
     def add_teacher(self, teacher):         # добавление учителя в класс
         self.teachers.append(teacher)
 
-    def __str__(self):
-        return self.title
-
     def __repr__(self):
         return self.title
 
@@ -68,58 +63,98 @@ class School:                       # класс "Школа"
         self.name = name
         self.classes = classes
 
-    def __str__(self):
-        return self.name
-
     def __repr__(self):
         return self.name
 
+    def __repr__(self):
+        return self.classes
+
+
     def get_classes(self):                              # список классов школы
-        print("классы школы: ", self.classes)
+        print("классы школы: ", self.classes, "\n")
 
     def get_students_in_class(self, class_name):        # список учеников класса
-        print("Студенты школы: ")
+        print(f"Ученики {class_name} класса школы {self.name}: ")
         for class_item in self.classes:
             if class_name == class_item.title:
-                print(class_item.students)
+                print(class_item.students, "\n")
 
     def get_teachers_in_class(self, class_name):        # список учетилей класса
-        print("Список учителей: ")
+        print(f"Список учителей класса {class_name}:")
         for class_item in self.classes:
             if class_name == class_item.title:
-                print(class_item.teachers)
+                print(class_item.teachers, "\n")
 
     def get_subjects_in_class(self, class_name):        # список предметов класса
-        print("Список предметов: ")
+        print(f"Список предметов класса {class_name}: ")
         for class_item in self.classes:
             if class_name == class_item.title:
                 for teacher in class_item.teachers:
                     print(teacher.subject)
 
+    def get_subjects_in_student(self, student_name):
+        print(f"Список предметов ученика {student_name}: ")
+        for c in self.classes:
+            for student in c.students:
+                if str(student) == student.name:            # если ученик в классе №
 
-first_class = Class("1 А")
-second_class = Class("1 Б")
 
-parent1 = Parent("Мистер Боб")
-parent2 = Parent("Миссис Боб")
-child1 = Student("Ребёнок Боб", first_class, parent1, parent2)
-child2 = Student("Ребёнок Боб2", first_class, parent1, parent2)
+    # def get_parent_in_class(self, class_name):
+    #     print(f"Список родителей учеников класса {class_name}: ")
+    #     for class_item in self.classes:
+    #         if class_name == class_item.title:
+    #             print(class_item.parent, "\n")
 
-parent3 = Parent("Мистер Банана")
-parent4 = Parent("Миссис Банана")
-child3 = Student("Ребёнок Банана", second_class, parent1, parent2)
-child4 = Student("Ребёнок Банана2", second_class, parent1, parent2)
+class_1A = Class("1 А")                                                 # создаём классы
+class_1B = Class("1 Б")
+class_5A = Class("5 А")
+class_5B = Class("5 Б")
 
-subject1 = Subject("Математика")
+parent1 = Parent("Г-н Иванов")                                          # создаём учеников с их родителями
+parent2 = Parent("Г-жа Иванова")
+child1 = Student("Иванов Иван", class_1A, parent1, parent2)             # все двойняшки :)
+child2 = Student("Иванова Мария", class_1A, parent1, parent2)
+
+parent3 = Parent("Г-н Сидоров")
+parent4 = Parent("Г-жа Сидорова")
+child3 = Student("Сидоров Пётр", class_1B, parent3, parent4)
+child4 = Student("Сидорова Наталья", class_1B, parent3, parent4)
+
+parent5 = Parent("Г-н Петров")
+parent6 = Parent("Г-жа Петрова")
+child5 = Student("Петров Сергей", class_5A, parent5, parent6)
+child6 = Student("Петрова Анастасия", class_5A, parent5, parent6)
+
+parent7 = Parent("Г-н Шариков")
+parent8 = Parent("Г-жа Шарикова")
+child7 = Student("Шариков Андрей", class_5B, parent7, parent8)
+child8 = Student("Шарикова Анна", class_5B, parent7, parent8)
+
+subject1 = Subject("Математика")                                        # создаём предметы
 subject2 = Subject("Литература")
 subject3 = Subject("Окружающий мир")
+subject4 = Subject("Физика")
+subject5 = Subject("Химия")
 
-teacher1 = Teacher("Учитель Томат", subject1, [first_class, second_class])
-teacher2 = Teacher("Учитель Горошек", subject2, [second_class])
-teacher3 = Teacher("Учитель Репка", subject2, [first_class])
-teacher4 = Teacher("Учитель Картошка", subject3, [first_class, second_class])
+teacher1 = Teacher("Учитель Архимед", subject1, [class_1A, class_1B, class_5A, class_5B])   # создаём учителей
+teacher2 = Teacher("Учитель Гололь", subject2, [class_1B, class_5A])
+teacher3 = Teacher("Учитель Шекспир", subject2, [class_1A, class_5B])
+teacher4 = Teacher("Учитель Циолковский", subject3, [class_1A, class_1B])
+teacher5 = Teacher("Учитель Ньютон", subject4, [class_5A, class_5B])
+teacher6 = Teacher("Учитель Менделеев", subject5, [class_5A, class_5B])
 
-school = School("№ 55", [first_class, second_class])
-#school.get_students_in_class("1 Б")
+school = School("№ 55", [class_1A, class_1B, class_5A, class_5B])
+# school.get_classes()
+# school.get_students_in_class("1 А")
+# school.get_students_in_class("1 Б")
+# school.get_students_in_class("5 А")
+# school.get_students_in_class("5 Б")
+# school.get_subjects_in_class("1 А")
 # school.get_subjects_in_class("1 Б")
-school.get_teachers_in_class("1 Б")
+# school.get_subjects_in_class("5 А")
+# school.get_subjects_in_class("5 Б")
+# school.get_teachers_in_class("1 Б")
+# school.get_teachers_in_class("1 А")
+# school.get_teachers_in_class("5 А")
+# school.get_teachers_in_class("5 Б")
+school.get_subjects_in_student("Иванов Иван")
