@@ -31,10 +31,6 @@ class Student(Person):              # класс "Ученик"
         my_class.add_student(self)
 
 
-    def __repr__(self):
-        return self.name
-
-
 class Subject:                     # класс "Предмет"
     def __init__(self, title):
         self.title = title
@@ -66,9 +62,6 @@ class School:                       # класс "Школа"
 
     def __repr__(self):
         return self.name
-
-    def __repr__(self):
-        return self.classes
 
 
     def get_classes(self):                              # список классов школы
@@ -146,17 +139,17 @@ teacher6 = Teacher("Учитель Менделеев", subject5, [class_5A, cla
 
 school = School("№ 62", [class_1A, class_1B, class_5A, class_5B])
 school.get_classes()                                # список классов школы
-school.get_students_in_class("1 А")               # список учеников класса
-school.get_students_in_class("1 Б")
-school.get_students_in_class("5 А")
-school.get_students_in_class("5 Б")
-school.get_subjects_in_class("1 А")               # список предметов класса
-school.get_subjects_in_class("1 Б")
-school.get_subjects_in_class("5 А")
-school.get_subjects_in_class("5 Б")
-school.get_teachers_in_class("1 Б")               # список учителей класса
-school.get_teachers_in_class("1 А")
-school.get_teachers_in_class("5 А")
-school.get_teachers_in_class("5 Б")
-school.get_subjects_in_student("Иванов Иван")     # список предметов ученика
-school.get_subjects_in_student("Шарикова Анна")
+# school.get_students_in_class("1 А")               # список учеников класса
+# school.get_students_in_class("1 Б")
+# school.get_students_in_class("5 А")
+# school.get_students_in_class("5 Б")
+# school.get_subjects_in_class("1 А")               # список предметов класса
+# school.get_subjects_in_class("1 Б")
+# school.get_subjects_in_class("5 А")
+# school.get_subjects_in_class("5 Б")
+# school.get_teachers_in_class("1 Б")               # список учителей класса
+# school.get_teachers_in_class("1 А")
+# school.get_teachers_in_class("5 А")
+# school.get_teachers_in_class("5 Б")
+# school.get_subjects_in_student("Иванов Иван")     # список предметов ученика
+# school.get_subjects_in_student("Шарикова Анна")
