@@ -30,6 +30,9 @@ class Student(Person):              # класс "Ученик"
 
         my_class.add_student(self)
 
+    def get_parents(self):
+        return self.father, self.mother
+
 
 class Subject:                     # класс "Предмет"
     def __init__(self, title):
@@ -97,6 +100,7 @@ class School:                       # класс "Школа"
 
     def get_parent_in_class(self, student_name):
         print(f"Список родителей ученика {student_name}: ")
+        # print(child6.get_parents())
 
 
 class_1A = Class("1 А")                                                 # создаём классы
@@ -138,7 +142,7 @@ teacher5 = Teacher("Учитель Ньютон", subject4, [class_5A, class_5B]
 teacher6 = Teacher("Учитель Менделеев", subject5, [class_5A, class_5B])
 
 school = School("№ 62", [class_1A, class_1B, class_5A, class_5B])
-school.get_classes()                                # список классов школы
+# school.get_classes()                                # список классов школы
 # school.get_students_in_class("1 А")               # список учеников класса
 # school.get_students_in_class("1 Б")
 # school.get_students_in_class("5 А")
