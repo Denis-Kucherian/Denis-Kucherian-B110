@@ -27,13 +27,8 @@ class Student(Person):              # класс "Ученик"
         self.my_class = my_class
         self.mother = mother
         self.father = father
-        self.parents_student = []
 
         my_class.add_student(self)
-
-    def add_parents(self, faser, mother):
-        self.parents_student.append(faser, mother)
-        return self.parents_student
 
 
 class Subject:                     # класс "Предмет"
@@ -102,8 +97,6 @@ class School:                       # класс "Школа"
 
     def get_parent_in_class(self, student_name):
         print(f"Список родителей ученика {student_name}: ")
-
-        print(child6.parents_student)
 
 
 class_1A = Class("1 А")                                                 # создаём классы
