@@ -1,3 +1,4 @@
+# 1 Вариант
 import inspect
 
 class Foo:
@@ -16,3 +17,11 @@ if __name__ == '__main__':
     print(x.getVarName())
     print(x1.getVarName())
     print(x2.getVarName())
+
+# 2 Вариант
+
+class Test:
+  def GetName(self):
+    for i, j in globals().items():
+      if j is self:
+        return i

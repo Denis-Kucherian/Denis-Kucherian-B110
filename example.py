@@ -27,8 +27,13 @@ class Student(Person):              # класс "Ученик"
         self.my_class = my_class
         self.mother = mother
         self.father = father
+        self.parents_student = []
 
         my_class.add_student(self)
+
+    def add_parents(self, faser, mother):
+        self.parents_student.append(faser, mother)
+        return self.parents_student
 
 
 class Subject:                     # класс "Предмет"
@@ -90,14 +95,16 @@ class School:                       # класс "Школа"
     def get_subjects_in_student(self, student_name):    # список предметов ученика
         print(f"Список предметов ученика {student_name}: ")
         for c in self.classes:
-            if student_name in str(c.students):            # определяем в каком класс ученик
+            if student_name in str(c.students):            # определяем в каком классе ученик
                 for teacher in c.teachers:
                     print(teacher.subject)
         print("")
 
-    # def get_parent_in_class(self, student_name):
-    #     print(f"Список родителей ученика {student_name}: ")
-    #     print(class_item.parent, "\n")
+    def get_parent_in_class(self, student_name):
+        print(f"Список родителей ученика {student_name}: ")
+
+        print(child6.parents_student)
+
 
 class_1A = Class("1 А")                                                 # создаём классы
 class_1B = Class("1 Б")
@@ -153,3 +160,4 @@ school.get_classes()                                # список классо�
 # school.get_teachers_in_class("5 Б")
 # school.get_subjects_in_student("Иванов Иван")     # список предметов ученика
 # school.get_subjects_in_student("Шарикова Анна")
+school.get_parent_in_class("Петрова Анастасия")
