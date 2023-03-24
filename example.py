@@ -90,7 +90,7 @@ class School:                       # класс "Школа"
     def get_subjects_in_student(self, student_name):    # список предметов ученика
         print(f"Список предметов ученика {student_name}: ")
         for c in self.classes:
-            if student_name in str(c.students):            # если ученик в классе
+            if student_name in str(c.students):            # определяем в каком класс ученик
                 for teacher in c.teachers:
                     print(teacher.subject)
         print("")
