@@ -1,7 +1,7 @@
 from random import randint
 
 
-def numbers_card(c, min, max):     # генерировать уникальные номера из интервала
+def numbers_card(c, min, max):     # создаём неодинаковые номера из интервала
     list1 = []
     while len(list1) < c:
         new = randint(min, max)
@@ -10,54 +10,40 @@ def numbers_card(c, min, max):     # генерировать уникальны
     return list1
 
 
-class Keg:          # бочонок
-    __num = None
+class Card:               # карточка
+    rows = 3              # строка
+    cols = 9              # столбец
+    nums_in_row = 5       # количество чисел в строке
+    data = None           #
+    emptynum = 0          #
+    crossednum = -1       #
 
     def __init__(self):
-        self.__num = randint(1, 90)
+        rand = numbers_card(15, 1, 90)     # список из 15 случайных неодинаковых чисел
 
-    @property
-    def num(self):                  # возвращает случайны бочонок (int)
-        return self.__num
-
-    def __str__(self):              # возвращает случайны бочонок (str)
-        return str(self.__num)
-
-
-class Card:                 # карточка
-    __rows = 3              # строка
-    __cols = 9              # столбец
-    __nums_in_row = 5       # количество чисел в строке
-    __data = None           #
-    __emptynum = 0          #
-    __crossednum = -1       #
-
-    def __init__(self):
-        uniques = numbers_card(15, 1, 90)     # список из 15 случайных неодинаковых чисел
-
-        self.__data = []
-        for i in range(0, self.__rows):
-            tmp = sorted(uniques[self.__nums_in_row * i: self.__nums_in_row * (i + 1)])
-            empty_nums_count = self.__cols - self.__nums_in_row
+        self.data = []
+        for i in range(0, self.rows):
+            tmp = sorted(rand[self.nums_in_row * i: self.nums_in_row * (i + 1)])
+            empty_nums_count = self.cols - self.nums_in_row
             for j in range(0, empty_nums_count):
                 index = randint(0, len(tmp))
-                tmp.insert(index, self.__emptynum)
-            self.__data += tmp
+                tmp.insert(index, self.emptynum)
+            self.data += tmp
 
     def __str__(self):
         delimiter = '--------------------------'
         ret = delimiter + '\n'
-        for index, num in enumerate(self.__data):
-            if num == self.__emptynum:
+        for index, num in enumerate(self.data):
+            if num == self.emptynum:
                 ret += '  '
-            elif num == self.__crossednum:
+            elif num == self.crossednum:
                 ret += ' -'
             elif num < 10:
                 ret += f' {str(num)}'
             else:
                 ret += str(num)
 
-            if (index + 1) % self.__cols == 0:
+            if (index + 1) % self.cols == 0:
                 ret += '\n'
             else:
                 ret += ' '
@@ -65,17 +51,17 @@ class Card:                 # карточка
         return ret + delimiter
 
     def __contains__(self, item):
-        return item in self.__data
+        return item in self.data
 
     def cross_num(self, num):
-        for index, item in enumerate(self.__data):
+        for index, item in enumerate(self.data):
             if item == num:
-                self.__data[index] = self.__crossednum
+                self.data[index] = self.crossednum
                 return
         raise ValueError(f'Number not in card: {num}')
 
     def closed(self) -> bool:
-        return set(self.__data) == {self.__emptynum, self.__crossednum}
+        return set(self.data) == {self.emptynum, self.crossednum}
 
 
 class Game:

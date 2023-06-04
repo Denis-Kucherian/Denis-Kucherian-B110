@@ -21,6 +21,7 @@ class Keg:          # бочонок
 
     @property
     def num(self):                  # возвращает случайны бочонок (int)
+        return self.__num
 
     def __str__(self):              # возвращает случайны бочонок (str)
         return str(self.__num)
