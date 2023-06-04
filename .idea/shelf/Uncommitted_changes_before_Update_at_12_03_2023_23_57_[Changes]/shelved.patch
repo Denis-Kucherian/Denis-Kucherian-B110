@@ -1,0 +1,78 @@
+Index: example.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import os, shutil\r\nimport sys\r\n\r\n#\r\n# Задача-4:\r\n# Напишите скрипт, создающий копию файла, из которого запущен данный скрипт.\r\n\r\n\r\n# def create_main_copy():\r\n#     src_path = os.path.join(os.getcwd(), os.path.split(__file__)[1])\r\n#     print(src_path)\r\n#     des_path = os.path.join(os.getcwd(), \"copy_\" + os.path.split(__file__)[1])\r\n#     print(des_path)\r\n#     shutil.copy(src_path, des_path)\r\n#\r\n#\r\n# if __name__ == '__main__':\r\n#     create_main_copy()\r\n\r\nnew_file =\"copy___\" + os.path.split(__file__)[1]\r\nshutil.copy(__file__, new_file)\r\n
+===================================================================
+diff --git a/example.py b/example.py
+--- a/example.py	
++++ b/example.py	
+@@ -1,21 +1,0 @@
+-import os, shutil
+-import sys
+-
+-#
+-# Задача-4:
+-# Напишите скрипт, создающий копию файла, из которого запущен данный скрипт.
+-
+-
+-# def create_main_copy():
+-#     src_path = os.path.join(os.getcwd(), os.path.split(__file__)[1])
+-#     print(src_path)
+-#     des_path = os.path.join(os.getcwd(), "copy_" + os.path.split(__file__)[1])
+-#     print(des_path)
+-#     shutil.copy(src_path, des_path)
+-#
+-#
+-# if __name__ == '__main__':
+-#     create_main_copy()
+-
+-new_file ="copy___" + os.path.split(__file__)[1]
+-shutil.copy(__file__, new_file)
+Index: lesson6/normal.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Задача-1:\r\n# Примечание: Если уже делали easy задание, то просто перенесите решение сюда.\r\n# Следующая программа написана верно, однако содержит места потенциальных ошибок.\r\n# используя конструкцию try добавьте в код обработку соответствующих исключений.\r\n# Пример.\r\n# Исходная программа:\r\ndef avg(a, b):\r\n    \"\"\"Вернуть среднее геометрическое чисел 'a' и 'b'.\r\n\r\n    Параметры:\r\n        - a, b (int или float).\r\n\r\n    Результат:\r\n        - float.\r\n    \"\"\"\r\n    return (a * b) ** 0.5\r\n\r\n\r\na = float(input(\"a = \"))\r\nb = float(input(\"b = \"))\r\nc = avg(a, b)\r\nprint(\"Среднее геометрическое = {:.2f}\".format(c))\r\n\r\n# ПРИМЕЧАНИЕ: Для решения задачи 2-3 необходимо познакомиться с модулями os, sys!\r\n# СМ.: https://pythonworld.ru/moduli/modul-os.html, https://pythonworld.ru/moduli/modul-sys.html\r\n\r\n# Задача-2:\r\n# Напишите небольшую консольную утилиту,\r\n# позволяющую работать с папками текущей директории.\r\n# Утилита должна иметь \"меню\" выбора действия, в котором будут пункты:\r\n# 1. Перейти в папку\r\n# 2. Просмотреть содержимое текущей папки\r\n# 3. Удалить папку\r\n# 4. Создать папку\r\n# При выборе пунктов 1, 3, 4 программа запрашивает название папки\r\n# и выводит результат действия: \"Успешно создано/удалено/перешел\",\r\n# \"Невозможно создать/удалить/перейти\"\r\n\r\n# Для решения данной задачи используйте алгоритмы из задания easy,\r\n# оформленные в виде соответствующих функций,\r\n# и импортированные в данный файл из easy.py
+===================================================================
+diff --git a/lesson6/normal.py b/lesson6/normal.py
+--- a/lesson6/normal.py	
++++ b/lesson6/normal.py	
+@@ -1,28 +1,23 @@
+ # Задача-1:
+-# Примечание: Если уже делали easy задание, то просто перенесите решение сюда.
+ # Следующая программа написана верно, однако содержит места потенциальных ошибок.
+ # используя конструкцию try добавьте в код обработку соответствующих исключений.
+ # Пример.
+ # Исходная программа:
+ def avg(a, b):
+-    """Вернуть среднее геометрическое чисел 'a' и 'b'.
+-
+-    Параметры:
+-        - a, b (int или float).
+-
+-    Результат:
+-        - float.
+-    """
+-    return (a * b) ** 0.5
++    if a * b >= 0:
++        return (a * b) ** 0.5
++    else:
++        raise ValueError("Вводите положительные числа")
+ 
+ 
+-a = float(input("a = "))
+-b = float(input("b = "))
+-c = avg(a, b)
+-print("Среднее геометрическое = {:.2f}".format(c))
++try:
++    a = float(input("a = "))
++    b = float(input("b = "))
++    c = avg(a, b)
++    print("Среднее геометрическое = {:.2f}".format(c))
++except ValueError as error:
++    print("Ошибка:", error, ". Проверьте введенные числа.")
+ 
+-# ПРИМЕЧАНИЕ: Для решения задачи 2-3 необходимо познакомиться с модулями os, sys!
+-# СМ.: https://pythonworld.ru/moduli/modul-os.html, https://pythonworld.ru/moduli/modul-sys.html
+ 
+ # Задача-2:
+ # Напишите небольшую консольную утилиту,

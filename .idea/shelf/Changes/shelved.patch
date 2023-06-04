@@ -1,0 +1,72 @@
+Index: lesson6/easy.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Задача-1:\r\n# Следующая программа написана верно, однако содержит места потенциальных ошибок.\r\n# используя конструкцию try добавьте в код обработку соответствующих исключений.\r\n# Пример.\r\n# Исходная программа:\r\ndef avg(a, b):\r\n    if a * b >= 0:\r\n        return (a * b) ** 0.5\r\n    else:\r\n        raise ValueError(\"Вводите положительные числа\")\r\n\r\n\r\ntry:\r\n    a = float(input(\"a = \"))\r\n    b = float(input(\"b = \"))\r\n    c = avg(a, b)\r\n    print(\"Среднее геометрическое = {:.2f}\".format(c))\r\nexcept ValueError as error:\r\n    print(\"Ошибка:\", error, \". Проверьте введенные числа.\")\r\n\r\n\r\n# Задача-2:\r\n# Напишите скрипт, создающий директории dir_1 - dir_9 в папке,\r\n# из которой запущен данный скрипт.\r\n# И второй скрипт, удаляющий эти папки.\r\n\r\nimport os\r\n\r\n\r\ndef create_dir():\r\n    for i in range(1, 10):\r\n        dir_name = (\"dir_\" + str(i))\r\n        try:\r\n            os.mkdir(dir_name)\r\n        except:\r\n            print(f\"Папка {dir_name} существует\")\r\n\r\n\r\ndef delete_dir():\r\n    for i in range(1, 10):\r\n        dir_name = (\"dir_\" + str(i))\r\n        try:\r\n            os.rmdir(dir_name)\r\n        except:\r\n            print(f\"Папка {dir_name} не существует\")\r\n\r\n\r\ninp = input(\"Введите 1 для создания папок, 2 - для удаления: \")\r\nif inp == \"1\":\r\n    create_dir()\r\nelif inp == \"2\":\r\n    delete_dir()\r\nelse:\r\n    print(\"Неправильный ввод\")\r\n\r\n# Задача-3:\r\n# Напишите скрипт, отображающий папки текущей директории.\r\n\r\n# Задача-4:\r\n# Напишите скрипт, создающий копию файла, из которого запущен данный скрипт.
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/lesson6/easy.py b/lesson6/easy.py
+--- a/lesson6/easy.py	(revision c15ddf67ba0fc9903927df0f04b140e59e4b2022)
++++ b/lesson6/easy.py	(date 1678644257192)
+@@ -1,60 +1,0 @@
+-# Задача-1:
+-# Следующая программа написана верно, однако содержит места потенциальных ошибок.
+-# используя конструкцию try добавьте в код обработку соответствующих исключений.
+-# Пример.
+-# Исходная программа:
+-def avg(a, b):
+-    if a * b >= 0:
+-        return (a * b) ** 0.5
+-    else:
+-        raise ValueError("Вводите положительные числа")
+-
+-
+-try:
+-    a = float(input("a = "))
+-    b = float(input("b = "))
+-    c = avg(a, b)
+-    print("Среднее геометрическое = {:.2f}".format(c))
+-except ValueError as error:
+-    print("Ошибка:", error, ". Проверьте введенные числа.")
+-
+-
+-# Задача-2:
+-# Напишите скрипт, создающий директории dir_1 - dir_9 в папке,
+-# из которой запущен данный скрипт.
+-# И второй скрипт, удаляющий эти папки.
+-
+-import os
+-
+-
+-def create_dir():
+-    for i in range(1, 10):
+-        dir_name = ("dir_" + str(i))
+-        try:
+-            os.mkdir(dir_name)
+-        except:
+-            print(f"Папка {dir_name} существует")
+-
+-
+-def delete_dir():
+-    for i in range(1, 10):
+-        dir_name = ("dir_" + str(i))
+-        try:
+-            os.rmdir(dir_name)
+-        except:
+-            print(f"Папка {dir_name} не существует")
+-
+-
+-inp = input("Введите 1 для создания папок, 2 - для удаления: ")
+-if inp == "1":
+-    create_dir()
+-elif inp == "2":
+-    delete_dir()
+-else:
+-    print("Неправильный ввод")
+-
+-# Задача-3:
+-# Напишите скрипт, отображающий папки текущей директории.
+-
+-# Задача-4:
+-# Напишите скрипт, создающий копию файла, из которого запущен данный скрипт.
+\ No newline at end of file
